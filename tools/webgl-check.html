@@ -1,0 +1,15 @@
+<!doctype html>
+<meta charset="utf-8"><title>check</title>
+<body style="margin:0;background:#fff">
+<img src="logo-trace.svg" style="height:420px;display:inline-block">
+<img src="../assets/logo/source-card-black.jpg" style="height:520px;display:inline-block">
+<pre id="o" style="font:13px monospace"></pre>
+<script>
+const c=document.createElement('canvas');
+const gl=c.getContext('webgl2');
+const info={webgl2:!!gl};
+if(gl){const e=gl.getExtension('WEBGL_debug_renderer_info');info.renderer=e?gl.getParameter(e.UNMASKED_RENDERER_WEBGL):'?';info.max3D=gl.getParameter(gl.MAX_3D_TEXTURE_SIZE);info.floatRT=!!gl.getExtension('EXT_color_buffer_float');info.halfRT=!!gl.getExtension('EXT_color_buffer_half_float');}
+info.dpr=devicePixelRatio;info.size=innerWidth+'x'+innerHeight;info.cores=navigator.hardwareConcurrency;info.mem=navigator.deviceMemory;
+document.getElementById('o').textContent=JSON.stringify(info,null,1);
+window.__info=info;
+</script>

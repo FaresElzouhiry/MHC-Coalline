@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en" dir="ltr" translate="no" class="notranslate">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+  <title>The Coalline | M.H.C for Manufacturing &amp; Export</title>
+  <meta name="description" content="A 3D tour of the M.H.C production line, from timber to container.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#08090c">
+  <link rel="icon" type="image/png" href="../../assets/logo/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=Noto+Kufi+Arabic:wght@500;600;700&family=Noto+Sans+Arabic:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../../shared/kit.css">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+<body>
+  <canvas class="gl" id="gl" aria-hidden="true"></canvas>
+
+  <header class="top">
+    <a class="brand" href="#top" aria-label="M.H.C"><span class="mark" data-logo="dark"></span><b>COALLINE</b></a>
+    <nav class="nav" data-nav data-each="nav"><a data-href="$.href" data-t="$.t"></a></nav>
+    <a class="cta" href="#contact" data-t="hero.cta"></a>
+    <button class="burger" type="button" data-menu-toggle data-al="ui.menu"><i></i><i></i></button>
+  </header>
+
+  <main id="top">
+    <section id="process" class="ride">
+      <div class="stick">
+        <div class="intro" id="intro">
+          <p class="eyebrow mono" data-t="hero.eyebrow"></p>
+          <h1 data-h="models.1.hero"></h1>
+          <p class="lead" data-t="hero.sub"></p>
+          <p class="go mono"><i></i><span data-t="hero.scroll"></span></p>
+        </div>
+        <div class="cards" id="cards" data-each="process.steps">
+          <article class="card">
+            <p class="mono no"><span data-idx></span> / 07</p>
+            <h2 data-t="$.t"></h2>
+            <p class="x" data-t="$.x"></p>
+          </article>
+        </div>
+        <div class="hud" id="hud">
+          <div class="h-cell"><small class="mono" data-t="process.dayLabel"></small><b id="hDay" class="ltr">01</b></div>
+          <div class="h-cell"><small class="mono" data-t="process.tempLabel"></small><b class="ltr"><span id="hTemp">30</span><em>°C</em></b></div>
+          <div class="h-bar"><i id="hBar"></i></div>
+        </div>
+        <ol class="rail" id="rail" data-each="process.steps"><li><button type="button" data-al="$.t"><i></i><span data-t="$.t"></span></button></li></ol>
+        <a class="skip mono" href="#products" data-t="hero.cta2"></a>
+      </div>
+    </section>
+
+    <div class="sheets">
+      <section id="about" class="sheet">
+        <div class="wrap two">
+          <div>
+            <p class="tag mono"><span>A</span><span data-t="about.kicker"></span></p>
+            <h2 data-split data-t="about.title"></h2>
+            <p class="body" data-t="about.body" data-r></p>
+          </div>
+          <ul class="stats" data-each="about.stats"><li data-r><b data-t="$.n" data-n></b><span data-t="$.k"></span></li></ul>
+        </div>
+        <div class="wrap">
+          <ol class="tl" data-each="about.timeline"><li data-r><time class="mono ltr" data-t="$.d"></time><h3 data-t="$.t"></h3><p data-t="$.x"></p></li></ol>
+        </div>
+      </section>
+
+      <section id="products" class="sheet alt">
+        <div class="wrap">
+          <p class="tag mono"><span>B</span><span data-t="products.kicker"></span></p>
+          <h2 data-split data-t="products.title"></h2>
+          <div class="prods" data-each="products.items">
+            <article class="prod" data-r>
+              <header><span class="mono" data-idx></span><i></i></header>
+              <h3 data-t="$.name"></h3>
+              <p class="pt" data-t="$.tag"></p>
+              <p class="pd" data-t="$.desc"></p>
+              <table><tbody data-each="$.specRows"><tr><th data-t="$.k"></th><td data-t="$.v"></td></tr></tbody></table>
+              <p class="pk"><b data-t="products.packLabel"></b> <span data-t="$.pack"></span></p>
+            </article>
+          </div>
+          <p class="note mono" data-t="products.note"></p>
+        </div>
+      </section>
+
+      <section id="export" class="sheet">
+        <div class="wrap two">
+          <div>
+            <p class="tag mono"><span>C</span><span data-t="export.kicker"></span></p>
+            <h2 data-split data-t="export.title"></h2>
+            <p class="body" data-t="export.body" data-r></p>
+            <ul class="terms" data-each="export.terms"><li data-r><b class="ltr" data-t="$.k"></b><span data-t="$.v"></span></li></ul>
+            <h3 class="docs-t" data-t="export.docsTitle"></h3>
+            <ul class="docs" data-each="export.docs"><li data-t="$"></li></ul>
+          </div>
+          <div class="board" data-r>
+            <div class="b-head mono"><span data-t="export.head.port"></span><span data-t="export.head.land"></span><span data-t="export.daysWord"></span></div>
+            <ul data-each="export.routes"><li class="mono"><b data-t="$.port"></b><span data-t="$.land"></span><em class="ltr" data-t="$.range"></em></li></ul>
+            <p class="note mono"><span data-t="export.routesNote"></span></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="label" class="sheet alt">
+        <div class="wrap">
+          <p class="tag mono"><span>D</span><span data-t="label.kicker"></span></p>
+          <h2 data-split data-t="label.title"></h2>
+          <p class="body" data-t="label.body" data-r></p>
+          <ul class="pts" data-each="label.points"><li data-r><span class="mono" data-idx></span><h3 data-t="$.t"></h3><p data-t="$.x"></p></li></ul>
+        </div>
+      </section>
+
+      <section id="trust" class="sheet">
+        <div class="wrap">
+          <p class="tag mono"><span>E</span><span data-t="trust.kicker"></span></p>
+          <h2 data-split data-t="trust.title"></h2>
+          <p class="body" data-t="trust.body" data-r></p>
+          <div class="certs" role="table">
+            <div class="certs-body" data-each="trust.items"><div class="crow" role="row" data-r><span class="mono c-i" data-idx></span><b data-t="$.k"></b><span class="c-by" data-t="$.by"></span><span class="mono c-no ltr" data-t="$.no"></span><span class="mono c-un ltr" data-t="$.until"></span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="sheet alt">
+        <div class="wrap two">
+          <div><p class="tag mono"><span>F</span><span data-t="faq.kicker"></span></p><h2 data-split data-t="faq.title"></h2></div>
+          <div class="qa" data-each="faq.items"><details><summary data-t="$.q"></summary><p data-t="$.a"></p></details></div>
+        </div>
+      </section>
+
+      <section id="contact" class="sheet">
+        <div class="wrap two">
+          <div>
+            <p class="tag mono"><span>G</span><span data-t="contact.kicker"></span></p>
+            <h2 data-t="contact.title"></h2>
+            <ul class="addr" data-each="company.addresses"><li><small class="mono" data-t="$.k"></small><a data-href="$.map" target="_blank" rel="noopener" data-t="$.v"></a></li></ul>
+            <ul class="phones mono" data-each="company.phones"><li><a class="ltr" data-href="$.href" data-t="$.d"></a></li></ul>
+            <p class="wa"><a class="btn" data-href="company.whatsappHref" target="_blank" rel="noopener" data-t="contact.whatsapp"></a> <a class="btn line ltr" data-href="company.mailHref" data-t="company.email"></a></p>
+          </div>
+          <div class="formbox" data-quote-form></div>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <div class="wrap">
+          <span class="mark" data-logo="dark"></span>
+          <p><b data-t="company.name"></b><br><small data-t="company.legal"></small></p>
+          <small>© <span class="ltr">2026</span> M.H.C · <span data-t="ui.rights"></span></small>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <script src="../../shared/content.js"></script>
+  <script src="../../shared/logo.js"></script>
+  <script src="../../shared/kit.js" data-model="2"></script>
+  <script type="module" src="scene.js"></script>
+</body>
+</html>

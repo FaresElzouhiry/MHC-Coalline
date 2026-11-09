@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en" dir="ltr" translate="no" class="notranslate">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+  <title>The Summit | M.H.C for Manufacturing &amp; Export</title>
+  <meta name="description" content="M.H.C manufactures and exports charcoal from Egypt. Solid as the mountain.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#060605">
+  <link rel="icon" type="image/png" href="../../assets/logo/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Cairo:wght@400;500;600;700;900&display=swap">
+  <link rel="stylesheet" href="../../shared/kit.css">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+<body>
+  <canvas class="gl" id="gl" aria-hidden="true"></canvas>
+
+  <header class="top">
+    <a class="brand" href="#top" aria-label="M.H.C"><span class="mark" data-logo="dark"></span></a>
+    <button class="burger" type="button" data-menu-toggle data-al="ui.menu"><span data-t="ui.menu"></span><i></i></button>
+    <nav class="nav" data-nav data-each="nav"><a data-href="$.href"><span data-idx></span><b data-t="$.t"></b></a></nav>
+  </header>
+  <div class="elev" id="elev" aria-hidden="true"><span id="elevN" class="ltr">0</span><i></i></div>
+
+  <main id="top">
+    <section id="hero" class="hero">
+      <h1 class="mega" data-h="models.4.hero"></h1>
+      <div class="hero-foot">
+        <p class="lead" data-t="hero.sub"></p>
+        <a class="pill" href="#contact" data-t="hero.cta"></a>
+      </div>
+    </section>
+
+    <section id="about" class="block">
+      <div class="wrap">
+        <p class="num" aria-hidden="true">01</p>
+        <h2 class="huge" data-split data-t="about.title"></h2>
+        <div class="two">
+          <p class="body" data-t="about.body" data-r></p>
+          <ul class="stats" data-each="about.stats"><li data-r><b data-t="$.n" data-n></b><span data-t="$.k"></span></li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="gate" class="gate" aria-hidden="true"><div class="gate-pin"><p class="gate-t" data-t="company.short"></p></div></section>
+
+    <section id="products" class="block">
+      <div class="wrap">
+        <p class="num" aria-hidden="true">02</p>
+        <h2 class="huge" data-split data-t="products.title"></h2>
+      </div>
+      <div class="rail" data-each="products.items">
+        <article class="card">
+          <span class="c-n" data-idx></span>
+          <h3 data-t="$.name"></h3>
+          <p class="c-t" data-t="$.tag"></p>
+          <p class="c-d" data-t="$.desc"></p>
+          <dl data-each="$.specRows"><div><dt data-t="$.k"></dt><dd data-t="$.v"></dd></div></dl>
+          <p class="c-p" data-t="$.pack"></p>
+        </article>
+      </div>
+      <div class="wrap"><p class="note" data-t="products.note"></p></div>
+    </section>
+
+    <section id="process" class="block">
+      <div class="wrap">
+        <p class="num" aria-hidden="true">03</p>
+        <h2 class="huge" data-split data-t="process.title"></h2>
+        <ol class="ladder" data-each="process.steps">
+          <li data-r><span data-idx></span><h3 data-t="$.t"></h3><p data-t="$.x"></p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="export" class="block">
+      <div class="wrap">
+        <p class="num" aria-hidden="true">04</p>
+        <h2 class="huge" data-split data-t="export.title"></h2>
+        <div class="two">
+          <div>
+            <p class="body" data-t="export.body" data-r></p>
+            <ul class="terms" data-each="export.terms"><li><b class="ltr" data-t="$.k"></b><span data-t="$.v"></span></li></ul>
+          </div>
+          <ul class="ports" data-each="export.routes"><li><b data-t="$.port"></b><em class="ltr" data-t="$.range"></em></li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="label" class="block slab">
+      <div class="wrap">
+        <p class="num" aria-hidden="true">05</p>
+        <h2 class="huge" data-split data-t="label.title"></h2>
+        <div class="two">
+          <p class="body" data-t="label.body" data-r></p>
+          <ul class="pts" data-each="label.points"><li data-r><h3 data-t="$.t"></h3><p data-t="$.x"></p></li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="trust" class="block">
+      <div class="wrap">
+        <p class="num" aria-hidden="true">06</p>
+        <h2 class="huge" data-split data-t="trust.title"></h2>
+        <ul class="certs" data-each="trust.items"><li data-r><b class="ltr" data-t="$.no"></b><h3 data-t="$.k"></h3><p data-t="$.by"></p></li></ul>
+      </div>
+    </section>
+
+    <section id="faq" class="block">
+      <div class="wrap">
+        <p class="num" aria-hidden="true">07</p>
+        <h2 class="huge" data-split data-t="faq.title"></h2>
+        <div class="qa" data-each="faq.items"><details><summary data-t="$.q"></summary><p data-t="$.a"></p></details></div>
+      </div>
+    </section>
+
+    <section id="contact" class="block slab">
+      <div class="wrap">
+        <p class="num" aria-hidden="true">08</p>
+        <h2 class="huge" data-t="contact.title"></h2>
+        <div class="two">
+          <div>
+            <ul class="addr" data-each="company.addresses"><li><b data-t="$.k"></b><a data-href="$.map" target="_blank" rel="noopener" data-t="$.v"></a></li></ul>
+            <ul class="phones" data-each="company.phones"><li><a class="ltr" data-href="$.href" data-t="$.d"></a></li></ul>
+            <p class="row"><a class="pill" data-href="company.whatsappHref" target="_blank" rel="noopener" data-t="contact.whatsapp"></a><a class="pill line ltr" data-href="company.mailHref" data-t="company.email"></a></p>
+          </div>
+          <div data-quote-form></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap"><span class="mark" data-logo="dark"></span><p><b data-t="company.name"></b><br><small data-t="company.legal"></small></p><small>© <span class="ltr">2026</span> M.H.C · <span data-t="ui.rights"></span></small></div>
+  </footer>
+
+  <script src="../../shared/content.js"></script>
+  <script src="../../shared/logo.js"></script>
+  <script src="../../shared/kit.js" data-model="5"></script>
+  <script type="module" src="scene.js"></script>
+</body>
+</html>

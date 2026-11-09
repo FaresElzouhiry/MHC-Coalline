@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en" dir="ltr" translate="no" class="notranslate">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+  <title>The Shards | M.H.C for Manufacturing &amp; Export</title>
+  <meta name="description" content="M.H.C manufactures and exports charcoal from Egypt to the world.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#FAFAF8">
+  <link rel="icon" type="image/png" href="../../assets/logo/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../../shared/kit.css">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+<body>
+  <canvas class="gl" id="gl" aria-hidden="true"></canvas>
+
+  <header class="top">
+    <a class="brand" href="#top" aria-label="M.H.C"><span class="mark" data-logo="light"></span><span class="bt" data-t="company.name"></span></a>
+    <nav class="nav" data-nav data-each="nav"><a data-href="$.href" data-t="$.t"></a></nav>
+    <a class="cta" href="#contact" data-t="hero.cta"></a>
+    <button class="burger" type="button" data-menu-toggle data-al="ui.menu"><i></i><i></i></button>
+  </header>
+
+  <main id="top">
+    <section id="hero" class="s hero">
+      <div class="wrap">
+        <p class="mini" data-t="hero.eyebrow"></p>
+        <h1 data-split data-h="models.5.hero"></h1>
+        <p class="txt" data-t="hero.sub" data-r style="--d:.4s"></p>
+        <p class="links" data-r style="--d:.55s"><a class="btn" href="#contact" data-t="hero.cta"></a><a class="btn line" href="#products" data-t="hero.cta2"></a></p>
+      </div>
+    </section>
+
+    <section id="about" class="s">
+      <div class="wrap">
+        <p class="mini" data-t="about.kicker"></p>
+        <h2 data-split data-t="about.title"></h2>
+        <p class="txt" data-t="about.body" data-r></p>
+        <ul class="nums" data-each="about.stats"><li data-r><b class="ltr" data-t="$.n" data-n></b><span data-t="$.k"></span></li></ul>
+      </div>
+    </section>
+
+    <section id="products" class="s">
+      <div class="wrap">
+        <p class="mini" data-t="products.kicker"></p>
+        <h2 data-split data-t="products.title"></h2>
+        <div class="prods" data-each="products.items">
+          <article data-r>
+            <h3 data-t="$.name"></h3>
+            <p class="tg" data-t="$.tag"></p>
+            <p class="ds" data-t="$.desc"></p>
+            <dl data-each="$.specRows"><div><dt data-t="$.k"></dt><dd data-t="$.v"></dd></div></dl>
+            <p class="pk"><b data-t="products.packLabel"></b> <span data-t="$.pack"></span></p>
+          </article>
+        </div>
+        <p class="note" data-t="products.note"></p>
+      </div>
+    </section>
+
+    <section id="process" class="s">
+      <div class="wrap">
+        <p class="mini" data-t="process.kicker"></p>
+        <h2 data-split data-t="process.title"></h2>
+        <ol class="ol" data-each="process.steps"><li data-r><span class="ltr" data-idx></span><div><h3 data-t="$.t"></h3><p data-t="$.x"></p></div></li></ol>
+        <p class="note" data-t="process.note"></p>
+      </div>
+    </section>
+
+    <section id="label" class="s">
+      <div class="wrap">
+        <p class="mini" data-t="label.kicker"></p>
+        <h2 data-split data-t="label.title"></h2>
+        <p class="txt" data-t="label.body" data-r></p>
+        <ul class="points" data-each="label.points"><li data-r><h3 data-t="$.t"></h3><p data-t="$.x"></p></li></ul>
+      </div>
+    </section>
+
+    <section id="export" class="s tall">
+      <div class="wrap">
+        <p class="mini" data-t="export.kicker"></p>
+        <h2 data-split data-t="export.title"></h2>
+        <p class="txt" data-t="export.body" data-r></p>
+        <ul class="terms" data-each="export.terms"><li data-r><b class="ltr" data-t="$.k"></b><span data-t="$.v"></span></li></ul>
+        <table class="table">
+          <thead><tr><th data-t="export.head.port"></th><th data-t="export.head.land"></th><th data-t="export.head.days"></th></tr></thead>
+          <tbody data-each="export.routes"><tr><td data-t="$.port"></td><td data-t="$.land"></td><td data-t="$.range"></td></tr></tbody>
+        </table>
+        <p class="note" data-t="export.routesNote"></p>
+      </div>
+    </section>
+
+    <section id="trust" class="s">
+      <div class="wrap">
+        <p class="mini" data-t="trust.kicker"></p>
+        <h2 data-split data-t="trust.title"></h2>
+        <p class="txt" data-t="trust.body" data-r></p>
+        <ul class="certs" data-each="trust.items"><li data-r><div><h3 data-t="$.k"></h3><p data-t="$.by"></p></div><b class="ltr" data-t="$.no"></b></li></ul>
+      </div>
+    </section>
+
+    <section id="faq" class="s">
+      <div class="wrap">
+        <p class="mini" data-t="faq.kicker"></p>
+        <h2 data-split data-t="faq.title"></h2>
+        <div class="qa" data-each="faq.items"><details><summary data-t="$.q"></summary><p data-t="$.a"></p></details></div>
+      </div>
+    </section>
+
+    <section id="contact" class="s">
+      <div class="wrap">
+        <p class="mini" data-t="contact.kicker"></p>
+        <h2 data-t="contact.title"></h2>
+        <div data-quote-form></div>
+        <ul class="addr" data-each="company.addresses"><li><b data-t="$.k"></b><a data-href="$.map" target="_blank" rel="noopener" data-t="$.v"></a></li></ul>
+        <ul class="ph" data-each="company.phones"><li><a class="ltr" data-href="$.href" data-t="$.d"></a></li></ul>
+        <p class="links"><a class="btn" data-href="company.whatsappHref" target="_blank" rel="noopener" data-t="contact.whatsapp"></a><a class="btn line ltr" data-href="company.mailHref" data-t="company.email"></a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot"><div class="wrap"><span class="mark" data-logo="light"></span><p><b data-t="company.name"></b><br><small data-t="company.legal"></small></p><small>© <span class="ltr">2026</span> M.H.C · <span data-t="ui.rights"></span></small></div></footer>
+
+  <script src="../../shared/content.js"></script>
+  <script src="../../shared/logo.js"></script>
+  <script src="../../shared/land.js"></script>
+  <script src="../../shared/kit.js" data-model="6"></script>
+  <script type="module" src="scene.js"></script>
+</body>
+</html>

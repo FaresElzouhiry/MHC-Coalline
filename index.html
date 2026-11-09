@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" dir="ltr" translate="no" class="notranslate">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+  <title>MHC Coalline | Website Models</title>
+  <meta name="description" content="Six 3D website models for M.H.C for Manufacturing &amp; Export.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#050505">
+  <link rel="icon" type="image/png" href="assets/logo/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="shared/kit.css">
+  <style>
+    :root { --bg: #050505; --fg: #F3EFE6; --muted: rgba(243, 239, 230, .66); --line: rgba(243, 239, 230, .14); --accent: #E7C24F; --pad: clamp(18px, 3.6vw, 60px); }
+    html[lang="ar"] { --fd: 'Cairo', sans-serif; --fb: 'Cairo', system-ui, sans-serif; --lh: 1.26; }
+    html[lang="en"] { --fd: 'Montserrat', system-ui, sans-serif; --fb: 'Montserrat', system-ui, sans-serif; --lh: 1.06; }
+    body { font: 400 clamp(15px, .3vw + 14px, 17px)/1.75 var(--fb); }
+    .ltr { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+    .wrap { width: min(1440px, 100% - 2 * var(--pad)); margin-inline: auto; }
+    .top { position: absolute; z-index: 5; inset-block-start: 0; inset-inline: 0; display: flex; align-items: center; justify-content: space-between; padding: 14px var(--pad); }
+    .top .mark { display: block; width: 74px; }
+    .ctl { display: flex; align-items: center; gap: 6px; }
+    .ctl button { height: 38px; padding: 0 14px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(243, 239, 230, .24); font-weight: 600; font-size: .86em; transition: background .25s, color .25s, box-shadow .25s; }
+    .ctl button:hover { box-shadow: inset 0 0 0 1px var(--accent); color: var(--accent); }
+    .ctl [data-4d] { color: var(--accent); box-shadow: inset 0 0 0 1px rgba(231, 194, 79, .5); font-family: system-ui, sans-serif; }
+    .ctl [data-4d][aria-pressed="true"] { background: linear-gradient(135deg, #e7892a, #e7c24f); color: #111; box-shadow: none; }
+    .hero { position: relative; height: 100svh; min-height: 560px; overflow: hidden; display: flex; align-items: flex-end; }
+    .gl { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero::after { content: ""; position: absolute; inset: auto 0 0; height: 30%; background: linear-gradient(transparent, var(--bg)); pointer-events: none; }
+    .h-in { position: relative; z-index: 2; padding-block-end: clamp(40px, 8vh, 90px); }
+    .kicker { color: var(--accent); font-size: .86em; font-weight: 500; margin-block-end: 1em; }
+    html[lang="en"] .kicker { letter-spacing: .16em; text-transform: uppercase; font-size: .72em; }
+    h1 { font-family: var(--fd); font-weight: 800; line-height: var(--lh); font-size: clamp(2.5rem, 5.6vw, 6rem); text-shadow: 0 4px 50px rgba(0, 0, 0, .8); margin-block-end: .3em; }
+    html[lang="en"] h1 { letter-spacing: -.03em; text-transform: uppercase; }
+    .h-in p.b { max-width: 62ch; color: rgba(243, 239, 230, .84); text-shadow: 0 2px 14px rgba(0, 0, 0, .9); }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.4vw, 20px); padding-block: 24px clamp(50px, 7vw, 100px); }
+    .card { position: relative; display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; background: #0c0c0c; box-shadow: inset 0 0 0 1px var(--line); transition: transform .5s cubic-bezier(.2, .8, .2, 1), box-shadow .5s; isolation: isolate; }
+    .card:hover { transform: translateY(-8px); box-shadow: inset 0 0 0 1px rgba(231, 194, 79, .7), 0 30px 70px -34px rgba(231, 170, 50, .6); }
+    .shot { position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden; background: #000; }
+    .shot img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s cubic-bezier(.2, .8, .2, 1), filter .6s; filter: saturate(1.04); }
+    .card:hover .shot img { transform: scale(1.06); }
+    .num { position: absolute; top: 12px; inset-inline-start: 12px; padding: 6px 10px; border-radius: 8px; background: rgba(6, 6, 6, .8); font: 800 1.16em/1 var(--fd); color: var(--accent); }
+    .inf { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+    .inf h2 { font-family: var(--fd); font-weight: 700; font-size: 1.36em; line-height: 1.25; margin-block-end: .4em; }
+    html[lang="en"] .inf h2 { letter-spacing: -.02em; }
+    .inf p { color: var(--muted); font-size: .94em; flex: 1; }
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-block: 12px; }
+    .tags li { padding: 1px 10px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); font-size: .76em; color: var(--muted); }
+    .tags li:first-child { color: var(--accent); box-shadow: inset 0 0 0 1px rgba(231, 194, 79, .4); }
+    .open { color: var(--accent); font-weight: 600; font-size: .92em; display: inline-flex; gap: 10px; align-items: center; }
+    .open i { width: 22px; height: 1px; background: currentColor; transition: width .3s; }
+    .card:hover .open i { width: 40px; }
+    .fd { padding-block: clamp(40px, 6vw, 90px); border-block-start: 1px solid var(--line); }
+    .fd h2 { font-family: var(--fd); font-weight: 700; line-height: var(--lh); font-size: clamp(1.8rem, 3vw, 3rem); margin-block-end: .4em; }
+    html[lang="en"] .fd h2 { letter-spacing: -.025em; }
+    .fd > .wrap > p { color: var(--muted); max-width: 60ch; }
+    .fd ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-block-start: 1.8em; }
+    .fd li { padding: 20px; border-radius: 18px; box-shadow: inset 0 0 0 1px var(--line); }
+    .fd h3 { color: var(--accent); font-family: var(--fd); font-weight: 700; font-size: 1.04em; margin-block-end: .4em; }
+    .fd li p { color: var(--muted); font-size: .9em; }
+    .end { padding-block: 22px 34px; color: var(--muted); font-size: .84em; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 20px; }
+    @media (max-width: 1040px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fd ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 640px) { .grid { grid-template-columns: minmax(0, 1fr); } .fd ul { grid-template-columns: minmax(0, 1fr); } .top .mark { width: 60px; } }
+  </style>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+<body>
+  <header class="top">
+    <span class="mark" data-logo="dark"></span>
+    <div class="ctl"><button type="button" data-4d>4D</button><button type="button" data-lang-toggle></button></div>
+  </header>
+
+  <section class="hero">
+    <canvas class="gl" id="gl" aria-hidden="true"></canvas>
+    <div class="wrap h-in">
+      <p class="kicker" data-t="gallery.kicker"></p>
+      <h1 data-split data-h="gallery.title"></h1>
+      <p class="b" data-t="gallery.body" data-r style="--d:.5s"></p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="grid" data-each="models">
+      <a class="card" data-href="$.href" data-r>
+        <span class="shot"><img data-src="$.shot" alt="" loading="lazy" width="1280" height="764"><b class="num ltr" data-t="$.no"></b></span>
+        <span class="inf">
+          <h2 data-t="$.name"></h2>
+          <p data-t="$.idea"></p>
+          <ul class="tags" data-each="$.tags"><li data-t="$"></li></ul>
+          <span class="open"><span data-t="gallery.open"></span><i></i></span>
+        </span>
+      </a>
+    </div>
+  </main>
+
+  <section class="fd">
+    <div class="wrap">
+      <h2 data-t="gallery.fdTitle"></h2>
+      <p data-t="gallery.fdBody"></p>
+      <ul data-each="gallery.fd"><li data-r><h3 data-t="$.t"></h3><p data-t="$.x"></p></li></ul>
+    </div>
+  </section>
+
+  <footer class="wrap end"><span data-t="gallery.note"></span><span data-t="company.name"></span></footer>
+
+  <script src="shared/content.js"></script>
+  <script src="shared/logo.js"></script>
+  <script src="shared/kit.js"></script>
+  <script type="module">
+    import { THREE, Stage, studioEnv, logoGroup, coalHeap, embers, smoke, backdrop, sstep, hasGL, failSafe, setupPage } from './shared/core3d.js';
+    const Kit = window.Kit;
+    if (!hasGL()) failSafe(); else {
+      const canvas = document.getElementById('gl');
+      const stage = new Stage({ canvas, fov: 30, background: 0x040404, bloom: { strength: 0.5, radius: 0.62, threshold: 1 }, bloomScale: 0.75, vignette: 0.55, grain: 0.024 });
+      const { scene, camera, renderer, tier } = stage;
+      scene.environment = studioEnv(renderer, { top: [1, 0.96, 0.9, 3], back: [1, 0.66, 0.3, 6], left: [0.8, 0.84, 1, 2.2], right: [1, 0.76, 0.42, 3.6], floor: [1, 0.46, 0.12, 1.2] });
+      const bg = backdrop({ glow: [0.34, 0.085, 0.01], smoke: 0.05 }); scene.add(bg); bg.userData.u.uAmt.value = 0.55;
+      Kit.loader.set(0.3);
+      const logo = logoGroup({ depth: 0.095, bevel: 0.01 }); logo.scale.setScalar(2.05); scene.add(logo);
+      const heap = coalHeap({ count: tier === 1 ? 130 : 300, radius: 6.4, height: 1.3, heat: 0.92, detail: 4, scale: [0.2, 0.5] }); heap.position.set(0, -2.45, -0.8); scene.add(heap);
+      Kit.loader.set(0.75);
+      scene.add(embers({ count: tier === 1 ? 200 : 460, box: [11, 7, 6], y0: -2.6, size: 28, speed: 0.5 }));
+      scene.add(smoke({ count: 12, origin: [0, -1.8, -3], spread: 7, rise: 7, size: 6, speed: 0.03, opacity: 0.06, color: [0.5, 0.42, 0.36] }));
+      const keyL = new THREE.DirectionalLight(0xfff2de, 1.1); keyL.position.set(-3, 5, 5); scene.add(keyL);
+      const up = new THREE.PointLight(0xff7a22, 26, 12, 1.5); up.position.set(0, -1.5, 1.6); scene.add(up);
+      Kit.fx4d.setHeat(0.7);
+      stage.onFrame((dt, t) => {
+        const asp = camera.aspect, wide = asp > 1.15, side = Kit.isRTL() ? -1 : 1, s = wide ? 1 : 0.68;
+        logo.position.set(wide ? side * 1.55 * Math.min(1.4, asp / 1.6) : 0, wide ? 0.32 + Math.sin(t * 0.6) * 0.04 : 1.12, 0);
+        logo.scale.setScalar(2.1 * s);
+        logo.rotation.set(Kit.look.sy * 0.12 + Math.sin(t * 0.4) * 0.03, Kit.look.sx * 0.34 + Math.sin(t * 0.3) * 0.16, 0);
+        camera.position.set(Kit.look.sx * 0.2, 0.1 - Kit.look.sy * 0.12, wide ? 9.2 : 11.6); camera.lookAt(0, 0, 0);
+        bg.userData.u.uAsp.value = asp;
+        stage.active = scrollY < innerHeight * 1.1;
+      });
+      setupPage(stage);
+    }
+  </script>
+</body>
+</html>

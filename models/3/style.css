@@ -162,3 +162,7 @@ html[dir="rtl"] .v-bar { transform: scaleX(-1); }
   .calc { align-items: flex-end; padding-block-start: 62svh; }
   .gl { cursor: auto; }
 }
+
+/* solid panels where frosted glass is off (see shared/kit.css) */
+html.noblur { --panel: rgba(9, 15, 28, .9); }
+html.noblur.scrolled .top { background: rgba(5, 9, 18, .95); }

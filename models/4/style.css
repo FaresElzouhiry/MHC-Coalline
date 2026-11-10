@@ -198,3 +198,6 @@ html[lang="ar"] .big { line-height: 1.8; }
   .bt { font-size: .84em; max-width: 13em; }
   .brand .mark { width: 44px; }
 }
+
+/* solid panels where frosted glass is off (see shared/kit.css) */
+html.noblur .top { background: rgba(248, 246, 241, .98); }

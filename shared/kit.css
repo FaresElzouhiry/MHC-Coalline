@@ -80,3 +80,7 @@ html[dir="rtl"] .fld select { background-position: 14px 50%, 20px 50%; }
 
 /* No WebGL: the pages stay readable and the canvas just hides */
 html.no-gl canvas.gl { display: none; }
+
+/* devices without frosted glass (set by the 3D stage): the panels turn solid instead */
+html.noblur *, html.noblur *::before, html.noblur *::after { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+html.noblur .mhc-bar { background: rgba(12, 12, 12, .94); }

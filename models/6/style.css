@@ -126,3 +126,6 @@ html.menu-open .burger i:nth-child(2) { top: 22px; transform: rotate(-45deg); }
   .brand .mark { width: 42px; }
   .addr li { grid-template-columns: minmax(0, 1fr); gap: 0; }
 }
+
+/* solid panels where frosted glass is off (see shared/kit.css) */
+html.noblur .top { background: rgba(250, 250, 248, .98); }

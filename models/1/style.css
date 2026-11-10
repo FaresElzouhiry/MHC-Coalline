@@ -197,3 +197,8 @@ section { position: relative; padding-block: clamp(90px, 13vw, 200px); }
   .routes li { grid-template-columns: minmax(0, 1fr) auto; }
   .routes li > span { display: none; }
 }
+
+/* solid panels where frosted glass is off (see shared/kit.css) */
+html.noblur.scrolled .top { background: rgba(5, 5, 5, .94); }
+html.noblur .spot > div, html.noblur .gauge, html.noblur .routes, html.noblur .glass { background: rgba(7, 7, 7, .9); }
+html.noblur .cert { background: linear-gradient(150deg, rgba(231, 194, 79, .13), rgba(10, 10, 10, .92) 42%); }

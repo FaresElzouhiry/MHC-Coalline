@@ -78,7 +78,7 @@ const FinalShader = {
 /* ---------- stage ---------- */
 export class Stage {
   constructor(o = {}) {
-    const { canvas, fov = 30, near = 0.1, far = 300, background = 0x050505, bloom = { strength: 0.5, radius: 0.65, threshold: 0.95 }, exposure = 1, tone = 0, vignette = 0.5, grain = 0.03, ca = 0, dprMax = 2, msaa = true, bloomScale = 1 } = o;
+    const { canvas, fov = 30, near = 0.1, far = 300, background = 0x050505, bloom = { strength: 0.5, radius: 0.65, threshold: 0.95 }, exposure = 1, tone = 0, vignette = 0.5, grain = 0.03, ca = 0, dprMax = 2, msaa = true, bloomScale = 0.5, budget = 1 } = o;
     this.canvas = canvas; this.tier = detectTier(); this.level = 0; this.active = true; this.time = 0; this.fps = 60;
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false, stencil: false, powerPreference: 'high-performance' });
     this.renderer.toneMapping = THREE.NoToneMapping;
@@ -86,9 +86,15 @@ export class Stage {
     this.scene = new THREE.Scene();
     this.scene.background = background === null ? null : new THREE.Color(background);
     this.camera = new THREE.PerspectiveCamera(fov, 1, near, far);
-    this.dprMax = Math.min(window.devicePixelRatio || 1, dprMax, this.tier === 1 ? 1.75 : dprMax);
-    this.dpr = this.dprMax;
-    this.samples = msaa ? (this.tier >= 3 ? 4 : this.tier === 2 ? 2 : 0) : 0;
+    this.mobile = /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && Math.min(screen.width, screen.height) < 900);
+    // pixels drawn per frame by device class, so big and high-density screens stay smooth
+    this.budget = (this.mobile ? (this.tier >= 2 ? 1.1 : 0.75) : (this.tier >= 3 ? 3.4 : this.tier === 2 ? 2.6 : 1.0)) * 1e6 * budget;
+    this.dprMax = Math.min(window.devicePixelRatio || 1, dprMax);
+    this.dprCut = 1; this.dpr = this.dprMax;
+    // multisampling here covers every post pass, not just the scene, so only strong desktops pay for it
+    this.samples = msaa && !this.mobile && this.tier >= 3 ? 2 : 0;
+    // frosted glass over a moving scene is redrawn every frame: only strong desktops keep it
+    document.documentElement.classList.toggle('noblur', this.mobile || this.tier < 3);
     const rt = new THREE.WebGLRenderTarget(4, 4, { type: THREE.HalfFloatType, samples: this.samples });
     this.composer = new EffectComposer(this.renderer, rt);
     this.composer.addPass(new RenderPass(this.scene, this.camera));
@@ -96,7 +102,8 @@ export class Stage {
     if (bloom) {
       this.bloom = new UnrealBloomPass(new THREE.Vector2(4, 4), bloom.strength, bloom.radius, bloom.threshold);
       { const hp = this.bloom.materialHighPassFilter; hp.fragmentShader = hp.fragmentShader.replace('vec4 texel = texture2D( tDiffuse, vUv );', 'vec4 texel = texture2D( tDiffuse, vUv ); texel.rgb = min( texel.rgb, vec3( 5.0 ) );'); hp.needsUpdate = true; }
-      if (bloomScale !== 1) { const orig = this.bloom.setSize.bind(this.bloom); this.bloom.setSize = (w, h) => orig(Math.max(8, w * bloomScale), Math.max(8, h * bloomScale)); }
+      this.bloomScale = Math.min(bloomScale, 0.5);
+      { const orig = this.bloom.setSize.bind(this.bloom); this.bloom.setSize = (w, h) => orig(Math.max(8, w * this.bloomScale), Math.max(8, h * this.bloomScale)); }
       this.composer.addPass(this.bloom);
     }
     this.final = new ShaderPass(FinalShader);
@@ -104,7 +111,7 @@ export class Stage {
     const u = this.final.uniforms;
     u.uExp.value = exposure; u.uTone.value = tone; u.uVig.value = vignette; u.uGrain.value = grain; u.uCA.value = ca;
     this.composer.addPass(this.final);
-    this.cbs = []; this._acc = 0; this._n = 0; this._low = 0; this._warm = 2; this._w = 0; this._h = 0; this.haze = 0; this.hazeGoal = 0;
+    this.cbs = []; this._acc = 0; this._n = 0; this._low = 0; this._warm = 2; this._since = 1; this._w = 0; this._h = 0; this.haze = 0; this.hazeGoal = 0;
     this.shake = 0;
     this._ro = new ResizeObserver(() => this.resize());
     this._ro.observe(canvas);
@@ -120,18 +127,21 @@ export class Stage {
     const w = this.canvas.clientWidth || innerWidth, h = this.canvas.clientHeight || innerHeight;
     if (w === this._w && h === this._h) return;
     this._w = w; this._h = h;
-    this.renderer.setPixelRatio(this.dpr); this.renderer.setSize(w, h, false);
-    this.composer.setPixelRatio(this.dpr); this.composer.setSize(w, h);
     this.camera.aspect = w / h; this.camera.updateProjectionMatrix();
-    this.final.uniforms.uRes.value.set(w * this.dpr, h * this.dpr);
+    this._apply();
     this.onResize && this.onResize(w, h);
   }
-  setDpr(v) {
-    this.dpr = v; const w = this._w, h = this._h;
+  // device pixels per CSS pixel: the screen's own density, held inside the pixel budget, times the adaptive cut
+  _apply() {
+    const w = this._w, h = this._h, fit = Math.sqrt(this.budget / Math.max(1, w * h));
+    const v = Math.max(0.5, Math.min(this.dprMax, fit) * this.dprCut);
+    this.dpr = v;
     this.renderer.setPixelRatio(v); this.renderer.setSize(w, h, false);
     this.composer.setPixelRatio(v); this.composer.setSize(w, h);
     this.final.uniforms.uRes.value.set(w * v, h * v);
   }
+  setDpr(v) { this.dprCut = v / Math.max(0.01, Math.min(this.dprMax, Math.sqrt(this.budget / Math.max(1, this._w * this._h)))); this._apply(); }
+  // steps down while the frame rate stays low: smoothing first, then resolution, then glow size
   degrade() {
     this.level++;
     if (this.samples > 0) {
@@ -139,18 +149,21 @@ export class Stage {
       [this.composer.renderTarget1, this.composer.renderTarget2].forEach((r) => { r.samples = 0; r.dispose(); });
       return;
     }
-    if (this.dpr > 1.01) { this.setDpr(Math.max(1, this.dpr - 0.25)); return; }
-    if (this.dpr > 0.76) { this.setDpr(this.dpr - 0.125); return; }
-    if (this.bloom && this.bloom.enabled) { this.bloom.enabled = false; return; }
+    if (this.dprCut > 0.62) { this.dprCut *= 0.85; this._apply(); return; }
+    if (this.bloom && this.bloom.enabled && this.bloomScale > 0.3) { this.bloomScale = 0.25; this._apply(); return; }
+    if (this.bloom && this.bloom.enabled && this.fps < 30) this.bloom.enabled = false;
   }
   _frame(dt) {
-    if (!this.active || !this.visible || document.hidden) return;
+    if (!this.active || !this.visible || document.hidden) { this._since = 0; return; }
+    this._since += dt;
+    if (this._since < 0.0105) return;
+    dt = Math.min(0.1, this._since); this._since = 0;
     this.time += dt;
     this._acc += dt; this._n++;
-    if (this._acc >= 1.5) {
+    if (this._acc >= 1) {
       this.fps = this._n / this._acc; window.__fps = this.fps; this._acc = 0; this._n = 0;
       if (this._warm > 0) this._warm--;
-      else if (this.fps < 40) { if (++this._low >= 2) { this._low = 0; this.degrade(); } } else this._low = 0;
+      else if (this.fps < 48) { if (++this._low >= 2) { this._low = 0; this.degrade(); } } else this._low = 0;
     }
     for (let i = 0; i < this.cbs.length; i++) this.cbs[i](dt, this.time);
     SHARED.uTime.value = this.time;

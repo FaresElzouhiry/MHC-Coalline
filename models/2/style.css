@@ -177,3 +177,7 @@ html[dir="ltr"] .tl li { padding: 18px 16px 0 0; }
   .crow { grid-template-columns: 30px 1fr; }
   .c-no { grid-column: 2; }
 }
+
+/* solid panels where frosted glass is off (see shared/kit.css) */
+html.noblur.scrolled .top { background: rgba(8, 9, 12, .96); }
+html.noblur .hud { background: rgba(6, 7, 9, .86); }
